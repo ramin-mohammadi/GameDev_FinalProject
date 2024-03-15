@@ -19,9 +19,7 @@ public class MovingPlatform : MonoBehaviour
         IEnumerator MoveRoutine(){
             while(true){
                 yield return new WaitForSeconds(pauseTime);
-                //do something
-                Debug.Log("Do something.");
-
+ 
                 float timer = 0;
                 int nextIndex = (index+1)%checkpoints.Count;
                 while(timer < moveTime){

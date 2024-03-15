@@ -5,9 +5,9 @@ using UnityEngine;
 public class Main_Character : MonoBehaviour
 {
      [Header("Stats")]
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 15f;
     [SerializeField] float jumpForce = 10;
-    [SerializeField] int health = 3;
+    [SerializeField] int health = 10;
 
 
     [Header("Physics")]
@@ -53,12 +53,22 @@ public class Main_Character : MonoBehaviour
         //rb.MovePosition(transform.position + (direction * speed * Time.deltaTime))
     }
 
-      public void Jump()
+    public void Jump()
     {
         if(Physics2D.OverlapCircleAll(transform.position + new Vector3(0,jumpOffset,0),jumpRadius,groundMask).Length > 0){
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
         }
         // rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    public void Damage()
+    {
+        health -= 1;
+        if(health <= 0){
+            Debug.Log("Player has no more health, game ends");
+            Application.Quit();
+        }
+        
     }
 
 }
