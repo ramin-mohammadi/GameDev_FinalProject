@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
 
     public void Fire(Vector3 targetPos){
         GameObject newProjectile = Instantiate(bullet,transform.position,Quaternion.identity);
-        newProjectile.transform.rotation = Quaternion.LookRotation(transform.forward,targetPos - transform.position);
+        newProjectile.transform.rotation = Quaternion.LookRotation(transform.forward, targetPos - transform.position);
         newProjectile.GetComponent<Rigidbody2D>().velocity = newProjectile.transform.up * bulletSpeed;
         Destroy(newProjectile,6);
     }
