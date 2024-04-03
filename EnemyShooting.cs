@@ -7,7 +7,11 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bullet;
     // public Transform bulletPos = transform.position;
     private float timer = 0f;
-    [SerializeField] Main_Character player;
+    [SerializeField] Transform player_transform;
+    public float bulletSpeed = 20;
+    [SerializeField] float force = 8f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +22,9 @@ public class EnemyShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distance = Vector2.Distance(transform.position, player_transform.position);
 
-        if(distance < 15){        
+        if(distance < 22){        
             timer += Time.deltaTime;
             if(timer >= 1){
                 // Debug.Log("FIREEEEEEEEEEE");
@@ -30,6 +34,15 @@ public class EnemyShooting : MonoBehaviour
         }        
     }
     void Fire(){
-        Instantiate(bullet, transform.position , Quaternion.identity);
+        GameObject newProjectile = Instantiate(bullet, transform.position , transform.rotation);
+        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+        
+        Vector3 direction = player_transform.position - newProjectile.transform.position;
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+
+        float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        newProjectile.transform.rotation = Quaternion.Euler(0,0,rot);
+
+
     }
 }

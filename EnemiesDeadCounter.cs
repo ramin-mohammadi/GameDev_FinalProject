@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemiesDeadCounter : MonoBehaviour
 {
     public int enemiesDead = 0;
+    public int total_enemies = 0;
     // Start is called before the first frame update
     void Start()
     {

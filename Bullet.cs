@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // [SerializeField] Main_Character main_Character;
+    [SerializeField] GameObject particle;
     void OnTriggerEnter2D(Collider2D other){
+        GameObject new_particle = Instantiate(particle, transform.position, transform.rotation);
+        Destroy(new_particle, 2);
+
         switch(other.gameObject.tag){
             case "Block":
                 Destroy(this.gameObject);
@@ -15,12 +18,7 @@ public class Bullet : MonoBehaviour
                 //damage Enemy's health
                 other.GetComponent<Enemy>().Damage();
                 break;
-            // case "Player":
-            //     Destroy(this.gameObject);
-            //     //damage Player's health
-            //     main_Character.Damage();
-            //     break;
-        }
+         }
    
     }
 }

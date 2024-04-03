@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 0}
+  target: {fileID: 6856475689512382002, guid: 31329bce19339464bbf1c9d29bd629d0, type: 3}
 --- !u!114 &3664054993111731675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  enemiesDeadCounter: {fileID: 0}
+  enemiesDeadCounter: {fileID: 7943567867800089065, guid: 603165261ff524548aa99fe77e965cb1, type: 3}
 --- !u!114 &-3940062531773473413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,5 +373,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4372546894833369382, guid: 844fb5b9ad46d3846abf98ab3fec9a57, type: 3}
-  bulletPos: {fileID: 739068081702802616}
-  player: {fileID: 2796524244667029951, guid: 31329bce19339464bbf1c9d29bd629d0, type: 3}
+  player_transform: {fileID: 6856475689512382002, guid: 31329bce19339464bbf1c9d29bd629d0, type: 3}

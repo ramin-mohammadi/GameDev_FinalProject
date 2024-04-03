@@ -6,19 +6,10 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] Main_Character player;
-    private Rigidbody2D rb;
-    [SerializeField] float force = 5f;
-    private float timer = 0f;
+    [SerializeField] GameObject particle;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        
-        Vector3 direction = player.transform.position - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-
-        float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0,0,rot);
     }
 
     // Update is called once per frame
@@ -28,6 +19,8 @@ public class EnemyBullet : MonoBehaviour
     }
 
      void OnTriggerEnter2D(Collider2D other){
+        GameObject new_particle = Instantiate(particle, transform.position, transform.rotation);
+        Destroy(new_particle, 2);
         switch(other.gameObject.tag){
             case "Block":
                 Destroy(this.gameObject);

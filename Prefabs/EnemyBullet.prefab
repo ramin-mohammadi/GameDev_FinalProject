@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2796524244667029951, guid: 31329bce19339464bbf1c9d29bd629d0, type: 3}
-  force: 5
+  particle: {fileID: 2922092379925365815, guid: b9875f8ee7e2374408c66eaf37ca653e, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Main_Character : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class Main_Character : MonoBehaviour
 
     [Header("Tracked Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
+    [SerializeField] TextMeshProUGUI text_player_health;
 
+ 
     Rigidbody2D rb;
 
     void Awake(){
@@ -30,6 +33,7 @@ public class Main_Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        text_player_health.text = "Health: " + health.ToString();
     }
 
 
@@ -37,7 +41,7 @@ public class Main_Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        text_player_health.text = "Health: " + health.ToString();
     }
 
 
@@ -67,7 +71,7 @@ public class Main_Character : MonoBehaviour
         if(health <= 0){
             Debug.Log("Player has no more health, game ends");
             Application.Quit();
-        }
+        }        
     }
 
 }

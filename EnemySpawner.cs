@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,12 +16,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float waveCooldown = 10f;
     private float timePassed = 0f;
     [SerializeField] EnemiesDeadCounter enemiesDeadCounter;
+    [SerializeField] TextMeshProUGUI text_wave_counter;
+    [SerializeField] TextMeshProUGUI text_enemies_remaining;
+
     Coroutine coroutineSpawner;
 
     // Start is called before the first frame update
     void Start()
-    {
-        coroutineSpawner = StartCoroutine(SpawnEnemiesRoutine());
+    {        
+        enemiesDeadCounter.total_enemies = enemiesPerWave;
+        text_enemies_remaining.text = "Enemies Remaining: " + enemiesDeadCounter.total_enemies.ToString();
+        coroutineSpawner = StartCoroutine(SpawnEnemiesRoutine());    
     }
 
     // Update is called once per frame
@@ -37,12 +43,14 @@ public class EnemySpawner : MonoBehaviour
             //intermission time between waves
             if(timePassed >= waveCooldown){      
                 timePassed = 0f;     
-                enemiesPerWave += increaeEnemyCount;
-                if(increaeEnemyCount <= 30) // max of 50 enemies per wave
-                    increaeEnemyCount += 5;
+                if(enemiesPerWave <= 50) // max of 50 enemies per wave                
+                    enemiesPerWave += increaeEnemyCount;
                 enemiesSpawned = 0;
                 waveCount += 1;
-                enemiesDeadCounter.enemiesDead = 0;                
+                text_wave_counter.text = "Wave: " + waveCount.ToString();
+                enemiesDeadCounter.enemiesDead = 0;          
+                enemiesDeadCounter.total_enemies = enemiesPerWave;
+                text_enemies_remaining.text = "Enemies Remaining: " + enemiesDeadCounter.total_enemies.ToString();
                 coroutineSpawner = StartCoroutine(SpawnEnemiesRoutine());
             }
         }
