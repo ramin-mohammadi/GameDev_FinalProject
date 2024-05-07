@@ -6,6 +6,17 @@ public class EnemiesDeadCounter : MonoBehaviour
 {
     public int enemiesDead = 0;
     public int total_enemies = 0;
+
+    public static EnemiesDeadCounter singleton;
+
+    void Awake(){
+        if(singleton == null){
+            singleton = this;
+        }
+        else{
+            Destroy(this.gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
